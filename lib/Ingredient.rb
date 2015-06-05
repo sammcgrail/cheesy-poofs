@@ -4,5 +4,4 @@ class Ingredient
     @name = name
     @weight = weight_in_grams * 453.592
   end
-
 end
