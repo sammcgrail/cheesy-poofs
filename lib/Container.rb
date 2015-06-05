@@ -56,18 +56,21 @@ brussels_sprout = Ingredient.new("Brussels Sprout", 20)
 cheesy_poof = Ingredient.new("Cheesy Poof", 0.5)
 container_poofs = Container.new(cheesy_poof, 50, 20)
 container_sprouts = Container.new(brussels_sprout, 200, 300)
+airplane = Airplane.new("Concorde", 20000)
 
 puts container_poofs.type
 container_capacity = container_poofs.ingredient_capacity
 
-cheesy_poofs = 5000 / cheesy_poof.weight
+# math for questions
+cheesy_poofs = 1000 / cheesy_poof.weight
 
 number_of_containers = (cheesy_poofs / container_capacity).to_i + 1
 
 cheesy_weight = number_of_containers * container_poofs.container_weight
 
-full_containers =  (20000 - cheesy_weight) / 500
+full_containers =  (airplane.capacity - cheesy_weight) / 500
 remainder = ((20000 - cheesy_weight) % 500) - 200
-extra_sprouts = remainder/brussels_sprout.weight
+extra_sprouts = (remainder/brussels_sprout.weight).to_i
+total_sprouts = (container_sprouts.ingredient_capacity * full_containers) + extra_sprouts
 
-puts extra_sprouts.to_i
+puts total_sprouts
