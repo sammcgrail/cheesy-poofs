@@ -1,7 +1,7 @@
 require_relative 'Ingredient'
 require 'pry'
 class Container
-  attr_reader :type, :container_weight, :capacity, :content_weight
+  attr_reader :type, :container_weight, :capacity, :content_weight, :ingredient
   def initialize(ingredient, container_weight, capacity)
     @ingredient = ingredient
     @type = ingredient.name
@@ -13,6 +13,10 @@ class Container
 
   def ingredient_capacity
     (@capacity / @ingredient.weight).to_i
+  end
+
+  def full_container_weight
+    @container_weight + @capacity
   end
   # def container_container_full?
   #   @content_weight >= @capacity
@@ -52,25 +56,31 @@ end
 # puts container2.container_full?
 # puts container2.content_weight
 
-brussels_sprout = Ingredient.new("Brussels Sprout", 20)
-cheesy_poof = Ingredient.new("Cheesy Poof", 0.5)
-container_poofs = Container.new(cheesy_poof, 50, 20)
-container_sprouts = Container.new(brussels_sprout, 200, 300)
-airplane = Airplane.new("Concorde", 20000)
-
-puts container_poofs.type
-container_capacity = container_poofs.ingredient_capacity
-
-# math for questions
-cheesy_poofs = 1000 / cheesy_poof.weight
-
-number_of_containers = (cheesy_poofs / container_capacity).to_i + 1
-
-cheesy_weight = number_of_containers * container_poofs.container_weight
-
-full_containers =  (airplane.capacity - cheesy_weight) / 500
-remainder = ((20000 - cheesy_weight) % 500) - 200
-extra_sprouts = (remainder/brussels_sprout.weight).to_i
-total_sprouts = (container_sprouts.ingredient_capacity * full_containers) + extra_sprouts
-
-puts total_sprouts
+# brussels_sprout = Ingredient.new("Brussels Sprout", 20)
+# cheesy_poof = Ingredient.new("Cheesy Poof", 0.5)
+# container_poofs = Container.new(cheesy_poof, 50, 20)
+# container_sprouts = Container.new(brussels_sprout, 200, 300)
+# # airplane = Airplane.new("Concorde", 20000)
+# # required_ingredient = Ingredient.new("")
+#
+# puts container_poofs.type
+# container_capacity = container_poofs.ingredient_capacity
+#
+#
+#
+# # math for questions
+# cheesy_poofs = 5000 / cheesy_poof.weight
+# puts cheesy_poofs
+# puts "________"
+# number_of_containers = (cheesy_poofs / container_capacity).to_i + 1
+# puts number_of_containers
+# puts "________"
+# cheesy_weight = number_of_containers * container_poofs.container_weight
+# puts cheesy_weight
+# puts "________"
+# full_containers =  (20000 - cheesy_weight) / container_sprouts.full_container_weight
+# remainder = ((20000 - cheesy_weight) % container_sprouts.full_container_weight) - container_sprouts.container_weight
+# extra_sprouts = (remainder/brussels_sprout.weight).to_i
+# total_sprouts = (container_sprouts.ingredient_capacity * full_containers) + extra_sprouts
+#
+# puts total_sprouts
